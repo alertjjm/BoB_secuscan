@@ -28,14 +28,14 @@ int main(){
         Rule temp=decrypted_xml[i];
         rule_set.push_back(temp);
     }
-    //*engine*/
     int passfail[200];
-    memcpy(passfail, engine_run(rule_set),sizeof(int)*200);
+    /**루트인지 권한 체크*/
     if(!check_authority()){
         printf("no authority!\n");
         exit(0);
     }
     memcpy(passfail, exec_engine(rule_set, passfail), sizeof(passfail));
+    /**cvss scoring*/
     cvss_score(passfail);
     total_check_list(rule_set, passfail);
     int response;
